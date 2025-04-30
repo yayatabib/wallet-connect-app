@@ -1,36 +1,125 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Web3 Wallet App
+
+A simple yet elegant Web3 React application that connects seamlessly to crypto wallets and displays the user's balance.
+
+## Features
+
+- Connect to MetaMask and other Ethereum-compatible wallets
+- Display wallet address and current ETH balance
+- Automatic balance updates on wallet state changes
+- Modern and responsive UI with animations
+- TypeScript for type safety
+
+## Tech Stack
+
+- Next.js
+- React with TypeScript
+- TailwindCSS for styling
+- Ethers.js for Ethereum interactions
+- Framer Motion for animations
+
+## Project Structure
+
+The project follows a clean, modular architecture:
+
+```
+src/
+├── app/                  # Next.js App Router files
+│   ├── page.tsx          # Main application page
+│   ├── layout.tsx        # Root layout with metadata
+│   └── client-wrapper.tsx # Client-side wrapper for wallet functionality
+├── components/            # React components
+│   ├── index.ts          # Barrel exports for all components
+│   ├── wallet/           # Wallet-specific components
+│   │   ├── WalletConnect.tsx        # Main wallet component
+│   │   ├── WalletStatus.tsx         # Displays wallet details
+│   │   ├── WalletConnectButton.tsx  # Button to connect wallet
+│   │   ├── WalletDisconnectButton.tsx # Button to disconnect wallet
+│   │   └── NoWalletMessage.tsx      # Message when no wallet is found
+│   └── ui/               # Reusable UI components
+│       ├── WalletCard.tsx            # Card container component
+│       ├── LoadingSkeleton.tsx       # Loading state component
+│       └── ErrorMessage.tsx          # Error display component
+├── hooks/                # Custom React hooks
+│   └── useWallet.ts      # Hook for wallet interaction logic
+├── types/                # TypeScript type definitions
+│   └── ethereum.d.ts     # Types for Ethereum window object
+└── utils/                # Utility functions
+    └── chains.ts         # Chain name and address utilities
+```
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18.17.0 or later
+- npm or yarn
+- A Web3 wallet (MetaMask, Coinbase Wallet, etc.)
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/web3-wallet-app.git
+   cd web3-wallet-app
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+
+### Development
+
+Start the development server:
 
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Connecting Your Wallet
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Install MetaMask or another Ethereum wallet browser extension
+2. Click the "Connect Wallet" button in the app
+3. Approve the connection in your wallet
+4. Your wallet address and balance will be displayed
 
-## Learn More
+## Deployment to Vercel
 
-To learn more about Next.js, take a look at the following resources:
+The easiest way to deploy your Web3 Wallet App is to use the [Vercel Platform](https://vercel.com/new):
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Push your code to a GitHub repository
+2. Import the project to Vercel
+3. Deploy
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Architecture Decisions
 
-## Deploy on Vercel
+### Component Design
+- **Separation of Concerns**: Each component has a single responsibility
+- **Reusable UI Components**: Common UI elements are abstracted into reusable components
+- **Custom Hooks**: Business logic is separated into custom hooks
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### State Management
+- Uses React's built-in hooks for state management
+- Custom `useWallet` hook centralizes all wallet interaction logic
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Client-Side Only Execution
+- Web3 code only runs on the client side
+- Next.js dynamic imports with `ssr: false` ensure browser-only code doesn't run during server rendering
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Acknowledgments
+
+- [Ethers.js](https://docs.ethers.io/) for their Ethereum library
+- [MetaMask](https://metamask.io/) for wallet integration
+- [Tailwind CSS](https://tailwindcss.com/) for styling
+- [Framer Motion](https://www.framer.com/motion/) for animations
